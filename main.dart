@@ -1,36 +1,35 @@
-
 import 'package:flutter/material.dart';
-import 'library_screen.dart';
-import 'models/book.dart';
+import 'stopwatch_card.dart';
+import 'tap_card.dart';
+import 'two_way_counter.dart';
 
-void main() {
-  debugPrint('${totalPages(seed)} pages, ${unread(seed).length} unread');
-  debugPrint(
-    Book.fromMap({
-      'title': 'X',
-      'author': 'Y',
-      'pages': 10,
-    }).toString(),
-  );
-
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Reading List',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.indigo,
-        ),
-        useMaterial3: true,
-      ),
-      home: const LibraryScreen(),
-    );
-  }
+  Widget build(BuildContext context) =>
+      const MaterialApp(home: HomeScreen());
 }
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(title: const Text('A screen that reacts')),
+        body: const Padding(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            children: [
+              TapCard(),
+              SizedBox(height: 16),
+              TwoWayCounter(),
+              SizedBox(height: 16),
+              StopwatchCard(),
+            ],
+          ),
+        ),
+      );
+} 
